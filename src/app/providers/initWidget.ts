@@ -1,14 +1,13 @@
 import { createApp } from "vue";
-import WeatherWidget from "@/widgets/ui/WeatherWidget.vue";
+import App from "@/widgets/ui/WeatherWidget.vue";
 
-export function initWidget(host: HTMLElement) {
-    const shadow = host.attachShadow({ mode: "open" });
+export class WeatherWidgetElement extends HTMLElement {
+    connectedCallback() {
+        const el = document.createElement("div");
+        el.classList.add("weather-widget-root");
 
-    const mountPoint = document.createElement("div");
-    shadow.appendChild(mountPoint);
+        this.appendChild(el);
 
-    const app = createApp(WeatherWidget);
-    app.mount(mountPoint);
-
-    return app;
+        createApp(App).mount(el);
+    }
 }

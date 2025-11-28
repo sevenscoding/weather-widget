@@ -1,10 +1,4 @@
-import { initWidget } from "./providers/initWidget";
-
-class WeatherWidgetElement extends HTMLElement {
-    connectedCallback() {
-        initWidget(this);
-    }
-}
+import { WeatherWidgetElement } from "./providers/initWidget";
 
 if (!customElements.get("weather-widget")) {
     customElements.define("weather-widget", WeatherWidgetElement);
