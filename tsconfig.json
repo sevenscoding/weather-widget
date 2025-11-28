@@ -8,10 +8,7 @@
     "skipLibCheck": true,
     "jsx": "preserve",
     "allowSyntheticDefaultImports": true,
-    "typeRoots": [
-      "./types",
-      "./node_modules/@types"
-    ],
+    "typeRoots": ["src/app/types", "node_modules/@types"],
 
     "baseUrl": "./",
     "paths": {

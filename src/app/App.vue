@@ -1,15 +1,13 @@
 <script setup lang="ts">
+  import WidgetView from '@/views/WidgetView.vue'
 </script>
 
 <template>
   <div class="weather-widget">
-    3232323
+    <WidgetView />
   </div>
 </template>
 
 <style scoped lang="scss">
-.weather-widget {
-  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont,
-  "Helvetica Neue", Arial, sans-serif;
-}
+  @use '@/app/styles/index.scss';
 </style>
