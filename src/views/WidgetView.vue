@@ -1,5 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import DashboardView from '@/modules/dashboard/views/DashboardView.vue'
+</script>
 
-<template></template>
+<template>
+  <div class="widget-view">
+    <DashboardView />
+  </div>
+</template>
 
 <style scoped lang="scss"></style>

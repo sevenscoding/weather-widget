@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ES2019",
+    "lib": [
+      "ES2019",
+      "DOM"
+    ],
     "module": "ESNext",
     "moduleResolution": "Node",
     "strict": true,
@@ -8,12 +12,18 @@
     "skipLibCheck": true,
     "jsx": "preserve",
     "allowSyntheticDefaultImports": true,
-    "typeRoots": ["src/app/types", "node_modules/@types"],
-
+    "typeRoots": [
+      "src/app/types",
+      "node_modules/@types"
+    ],
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     }
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*"
+  ]
 }

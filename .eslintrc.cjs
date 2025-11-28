@@ -25,6 +25,7 @@ module.exports = {
 
   rules: {
     semi: ['error', 'never'],
+
     'import/order': [
       'error',
       {
@@ -39,14 +40,12 @@ module.exports = {
         pathGroupsExcludedImportTypes: ['builtin'],
 
         'newlines-between': 'always',
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true
-        }
+        alphabetize: { order: 'asc', caseInsensitive: true }
       }
     ],
 
-    'import/newline-after-import': ['error', { count: 1 }],
+    'import/newline-after-import': 'off',
+
     'import/no-unresolved': 'off'
   }
 }
