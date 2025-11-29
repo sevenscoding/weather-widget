@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useCitySearch } from '@/modules/settings/composables/use-city-search'
 import type { CitySearchItem } from '@/modules/settings/types'
+import SearchIcon from '@/shared/components/icons/SearchIcon.vue'
 import TownIcon from '@/shared/components/icons/TownIcon.vue'
 import LoadingSpinner from '@/shared/components/LoadingSpinner.vue'
 
@@ -21,12 +22,15 @@ const choose = (city: CitySearchItem) => {
 
 <template>
   <div class="city-search">
-    <input
-      v-model="query"
-      placeholder="Enter city name…"
-      class="city-search__input"
-      @input="search"
-    />
+    <div class="city-search__form">
+      <input
+        v-model="query"
+        placeholder="Enter city name…"
+        class="city-search__input"
+        @input="search"
+      />
+      <SearchIcon class="city-search__icon" />
+    </div>
 
     <div v-if="isLoading" class="city-search__loading">
       <LoadingSpinner />
@@ -59,6 +63,16 @@ const choose = (city: CitySearchItem) => {
     border-radius: var(--radius-100);
     margin-top: 0;
     padding: 0;
+  }
+
+  &__form {
+    position: relative;
+  }
+
+  &__icon {
+    position: absolute;
+    top: var(--indent-200);
+    right: var(--indent-300);
   }
 
   &__item {
