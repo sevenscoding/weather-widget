@@ -1,7 +1,7 @@
 import { useGeolocationService } from '@/modules/dashboard/composables/use-geolocation-service';
 import { useLocalStorage } from '@/shared/composables/useLocalStorage';
+const cities = useLocalStorage('ww_cities', []);
 export function useCities() {
-    const cities = useLocalStorage('ww_cities', []);
     const { detectCity } = useGeolocationService();
     const initCities = async () => {
         if (cities.value.length > 0)

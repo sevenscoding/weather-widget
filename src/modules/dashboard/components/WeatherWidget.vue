@@ -2,18 +2,18 @@
   <div class="weather-widget">
     <header class="weather-widget__header">
       <div class="weather-widget__city">{{ data.name ?? '-' }}, {{ data.sys.country ?? '-' }}</div>
-      <div class="weather-widget__settings">
-        <SettingsIcon />
-      </div>
     </header>
 
     <div class="weather-widget__temp">
       <img
+        v-if="data.weather[0].icon"
         class="weather-widget__icon"
         draggable="false"
         :src="`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`"
         :alt="data.weather[0].description"
       />
+
+      <LoadingSpinner v-else />
 
       <div :style="{ textShadow: getTempShadow(data.main.temp) }">
         {{ temperature }}
@@ -25,38 +25,36 @@
       {{ description }}
     </p>
 
-    <div class="weather-widget__grid">
-      <div class="weather-widget__grid-item">
+    <WidgetGrid>
+      <WidgetGridItem>
         <WindIcon />
         {{ data.wind.speed }} m/s {{ data.wind.deg }}°
-      </div>
+      </WidgetGridItem>
 
-      <div class="weather-widget__grid-item">
+      <WidgetGridItem>
         <CompassIcon />
         {{ data.main.pressure }} hPa
-      </div>
+      </WidgetGridItem>
 
-      <div class="weather-widget__grid-item">Humidity: {{ data.main.humidity }}%</div>
+      <WidgetGridItem> Humidity: {{ data.main.humidity }}% </WidgetGridItem>
 
-      <div class="weather-widget__grid-item">Dew point: {{ dewPoint }}°C</div>
+      <WidgetGridItem> Dew point: {{ dewPoint }}°C </WidgetGridItem>
 
-      <div class="weather-widget__grid-item">
-        Visibility: {{ (data.visibility / 1000).toFixed(1) }} km
-      </div>
-
-      <div class="weather-widget__grid-item"></div>
-    </div>
+      <WidgetGridItem> Visibility: {{ (data.visibility / 1000).toFixed(1) }} km </WidgetGridItem>
+    </WidgetGrid>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import WidgetGrid from '@/modules/dashboard/components/WidgetGrid.vue'
+import WidgetGridItem from '@/modules/dashboard/components/WidgetGridItem.vue'
 import { WeatherResponse } from '@/modules/dashboard/types'
 import { calcDewPoint, getTempShadow } from '@/modules/dashboard/utils'
 import CompassIcon from '@/shared/components/icons/CompassIcon.vue'
-import SettingsIcon from '@/shared/components/icons/SettingsIcon.vue'
 import WindIcon from '@/shared/components/icons/WindIcon.vue'
+import LoadingSpinner from '@/shared/components/LoadingSpinner.vue'
 
 type Props = {
   data: WeatherResponse
@@ -74,13 +72,17 @@ const dewPoint = computed(() => {
   return calcDewPoint(props.data.main.temp, props.data.main.humidity)
 })
 
-const temperature = computed(() =>
-  props.data.main?.temp != null ? Math.round(props.data.main.temp) : null
-)
+const temperature = computed(() => {
+  if (props.data.main?.temp == null) return '-'
+  return `${Math.round(props.data.main.temp)}°C`
+})
 </script>
 
 <style scoped lang="scss">
 .weather-widget {
+  box-shadow: var(--shadow-100);
+  padding: var(--indent-600);
+
   &__header {
     display: flex;
     align-items: center;
@@ -98,15 +100,6 @@ const temperature = computed(() =>
     -webkit-user-drag: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-  }
-
-  &__settings {
-    cursor: pointer;
-    transition: 0.25s color ease-in-out;
-
-    &:hover {
-      color: var(--gray-100);
-    }
   }
 
   &__description {
