@@ -5,7 +5,7 @@ export function useWeatherService() {
         return http.get(`${WEATHER_URL}/weather`, {
             q: city,
             units: 'metric',
-            lang: 'ru',
+            lang: 'eng',
             appid: process.env.OPEN_WEATHER_KEY
         });
     };

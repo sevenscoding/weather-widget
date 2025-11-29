@@ -17,6 +17,8 @@ export interface WeatherResponse {
     humidity: number
   }
 
+  visibility: number
+
   weather: {
     id: number
     main: string
