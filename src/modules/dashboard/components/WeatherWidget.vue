@@ -16,7 +16,7 @@
       />
 
       <div :style="{ textShadow: getTempShadow(data.main.temp) }">
-        {{ Math.round(data.main.temp) ?? '-' }}°C
+        {{ temperature }}
       </div>
     </div>
 
@@ -65,13 +65,18 @@ type Props = {
 const props = defineProps<Props>()
 
 const description = computed(() => {
-  const text = props.data.weather[0]?.description ?? '-'
-  return text.charAt(0).toUpperCase() + text.slice(1)
+  const text = props.data.weather[0]?.description
+  if (!text) return '-'
+  return text[0].toUpperCase() + text.slice(1)
 })
 
 const dewPoint = computed(() => {
   return calcDewPoint(props.data.main.temp, props.data.main.humidity)
 })
+
+const temperature = computed(() =>
+  props.data.main?.temp != null ? Math.round(props.data.main.temp) : null
+)
 </script>
 
 <style scoped lang="scss">
@@ -117,13 +122,13 @@ const dewPoint = computed(() => {
     font-size: var(--font-size-150);
   }
 
-  .weather-widget__grid-item {
+  &__grid-item {
     display: flex;
     align-items: center;
     gap: var(--indent-100);
   }
 
-  .weather-widget__grid-item:empty {
+  &__grid-item:empty {
     visibility: hidden;
   }
 }
