@@ -5,8 +5,11 @@
       "ES2019",
       "DOM"
     ],
+    "types": [
+      "node"
+    ],
+    "moduleResolution": "node",
     "module": "ESNext",
-    "moduleResolution": "Node",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
