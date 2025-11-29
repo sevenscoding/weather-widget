@@ -6,7 +6,7 @@ import DashboardView from '@/modules/dashboard/views/DashboardView.vue'
 import { Screen } from '@/modules/dashboard/views/types'
 import SettingsView from '@/modules/settings/views/SettingsView.vue'
 
-const currentScreen = ref<Screen>(SCREENS.SETTINGS)
+const currentScreen = ref<Screen>(SCREENS.DASHBOARD)
 
 const screensMap: Record<Screen, Component> = {
   [SCREENS.DASHBOARD]: DashboardView,
