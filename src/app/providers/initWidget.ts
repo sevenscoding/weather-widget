@@ -12,3 +12,5 @@ export class WeatherWidgetElement extends HTMLElement {
     createApp(App).mount(el)
   }
 }
+
+customElements.define('weather-widget', WeatherWidgetElement)
