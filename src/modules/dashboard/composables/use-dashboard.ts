@@ -1,8 +1,8 @@
 import { ref, watch, onActivated } from 'vue'
 
-import { useCities } from '@/modules/dashboard/composables/use-cities'
 import { useWeatherService } from '@/modules/dashboard/composables/use-weather-service'
 import type { WeatherResponse } from '@/modules/dashboard/types'
+import { useCities } from '@/shared/composables/use-cities'
 
 export const useDashboard = () => {
   const { cities, initCities } = useCities()

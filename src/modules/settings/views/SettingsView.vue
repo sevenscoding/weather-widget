@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useCities } from '@/modules/dashboard/composables/use-cities'
 import SettingsCitiesList from '@/modules/settings/components/SettingsCitiesList.vue'
 import SettingsCitySearch from '@/modules/settings/components/SettingsCitySearch.vue'
 import BackIcon from '@/shared/components/icons/BackIcon.vue'
+import { useCities } from '@/shared/composables/use-cities'
 
 type Emits = {
   goToDashboard: []

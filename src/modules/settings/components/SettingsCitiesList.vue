@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useCities } from '@/modules/dashboard/composables/use-cities'
 import SettingsListItem from '@/modules/settings/components/SettingsListItem.vue'
 import { useDragSort } from '@/modules/settings/composables/use-drag-sort'
+import { useCities } from '@/shared/composables/use-cities'
 
 const { cities, removeCity, reorderCities } = useCities()
 
